@@ -32,8 +32,8 @@ app.use(cors());
 app.use(morgan('common'));
 
 //ROUTES
-app.use('/v1/blog', blogRoute);
-app.use('/v1/author', authorRoute);
+app.use('/api/v1/blog', blogRoute);
+app.use('/api/v1/author', authorRoute);
 
 app.listen(port, () => {
   console.log(`Server is running in http://localhost:${port}`);
