@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 var bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const connectDB = require('./config/connectDB');
+const mongoose = require('mongoose');
 const blogRoute = require('./routes/blog');
 const authorRoute = require('./routes/author');
 
@@ -13,6 +13,14 @@ const app = express();
 dotenv.config();
 
 //CONNECT DATABASE
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+  }
+};
 connectDB();
 
 app.use(bodyParser.json({ limit: '50mb' }));
