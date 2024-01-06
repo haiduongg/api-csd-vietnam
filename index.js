@@ -13,19 +13,9 @@ const app = express();
 dotenv.config();
 
 //CONNECT DATABASE
-mongoose
-  .connect(process.env.MONGODB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    writeConcern: {
-      w: 'majority',
-      j: true,
-      wtimeout: 1000,
-    },
-  })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  });
+mongoose.connect(process.env.MONGODB_URL).then(() => {
+  console.log('Connected to MongoDB');
+});
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cors());
