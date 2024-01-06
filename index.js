@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
 const morgan = require('morgan');
 var bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const connectDB = require('./config/connectDB');
 const blogRoute = require('./routes/blog');
 const authorRoute = require('./routes/author');
 
@@ -13,9 +13,7 @@ const app = express();
 dotenv.config();
 
 //CONNECT DATABASE
-mongoose.connect(process.env.MONGODB_URL).then(() => {
-  console.log('Connected to MongoDB');
-});
+connectDB();
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cors());
