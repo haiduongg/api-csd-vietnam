@@ -33,6 +33,10 @@ const blogSchema = new mongoose.Schema(
       require: true,
       trim: true,
     },
+    description: {
+      type: String,
+      trim: true,
+    },
     thumbnail: {
       type: String,
       default:
